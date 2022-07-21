@@ -4,6 +4,8 @@ const app = express();
 
 app.use(cors());
 
+const PORT = process.env.PORT || 3333;
+
 app.get('/', (req, res) => {
   res.send({
     message: 'OK',
@@ -23,4 +25,4 @@ app.get('/room', (req, res) => {
   });
 });
 
-app.listen(5001, () => console.log('server 5001'));
+app.listen(PORT, () => console.log(`server ${PORT}`));
