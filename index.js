@@ -18,10 +18,23 @@ app.get('/room/category', (req, res) => {
   });
 });
 
+app.get('/error', async (req, res) => {
+  throw new Error('KABOOM!');
+});
+
 app.get('/room', (req, res) => {
   console.log(req.query);
   res.send({
     room: 40,
+  });
+});
+
+app.use('/', function (err, req, res, next) {
+  console.error('Unhandled Error');
+  console.error(err);
+  res.statusCode = 500;
+  res.send({
+    message: err.message,
   });
 });
 
